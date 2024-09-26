@@ -4,11 +4,17 @@ using UnityEngine.InputSystem;
 public class MovementController : MonoBehaviour
 {
 
+    [Header("Movement Settings")]
     public float acceleration = 5f;
     public float maxSpeed = 10f;
+
+    [Header("Jump Settings")]
     public float jumpForce = 5f;
-    public float cameraSensitivity = 1f;
+    public float gravity = 9.81f;
+
+    [Header("Camera Settings")]
     public Camera mainCamera;
+    public float cameraSensitivity = 1f;
 
     private PlayerInput playerInput;
     private Rigidbody rigidBody;
@@ -49,7 +55,7 @@ public class MovementController : MonoBehaviour
         rigidBody.velocity = Vector3.Lerp(GetComponent<Rigidbody>().velocity, targetVelocity, acceleration * Time.deltaTime);
 
         //Apply gravity to the character
-        rigidBody.AddForce(Vector3.down * 9.8f, ForceMode.Acceleration);
+        rigidBody.AddForce(Vector3.down * gravity, ForceMode.Acceleration);
 
         // Look in the look input direction
         verticalRotation -= lookInput.y * cameraSensitivity * Time.deltaTime;
