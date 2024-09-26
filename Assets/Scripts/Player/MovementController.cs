@@ -16,8 +16,8 @@ public class MovementController : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lookInput;
 
-    private float pitch = 0f;
-    private float yaw = 0f;
+    private float verticalRotation = 0f;
+    private float horizontalRotation = 0f;
 
     private void Start()
     {
@@ -52,11 +52,11 @@ public class MovementController : MonoBehaviour
         rigidBody.AddForce(Vector3.down * 9.8f, ForceMode.Acceleration);
 
         // Look in the look input direction
-        pitch -= lookInput.y * cameraSensitivity * Time.deltaTime;
-        yaw += lookInput.x * cameraSensitivity * Time.deltaTime;
-        pitch = Mathf.Clamp(pitch, -90f, 90f);
+        verticalRotation -= lookInput.y * cameraSensitivity * Time.deltaTime;
+        horizontalRotation += lookInput.x * cameraSensitivity * Time.deltaTime;
+        verticalRotation = Mathf.Clamp(verticalRotation, -90f, 90f);
 
         // Apply the rotation to the camera
-        mainCamera.transform.localEulerAngles = new Vector3(pitch, yaw, 0f);
+        mainCamera.transform.localEulerAngles = new Vector3(verticalRotation, horizontalRotation, 0f);
     }
 }
