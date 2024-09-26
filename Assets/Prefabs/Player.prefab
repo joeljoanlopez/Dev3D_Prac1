@@ -208,7 +208,19 @@ MonoBehaviour:
     m_ActionId: b8ed21d7-e958-4139-8365-b80ea9168350
     m_ActionName: Player/Crouch[/Keyboard/ctrl]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8088702500880712084}
+        m_TargetAssemblyTypeName: MovementController, Assembly-CSharp
+        m_MethodName: OnLook
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a37425df-5828-40eb-b28f-6b33e8567573
     m_ActionName: Player/Look[/Mouse/delta]
   m_NeverAutoSwitchControlSchemes: 0
@@ -231,6 +243,8 @@ MonoBehaviour:
   acceleration: 5
   maxSpeed: 10
   jumpForce: 5
+  cameraSensitivity: 5
+  mainCamera: {fileID: 4979883781211561315}
 --- !u!1 &6122163016637965502
 GameObject:
   m_ObjectHideFlags: 0
