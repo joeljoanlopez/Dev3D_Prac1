@@ -51,12 +51,9 @@ public class MovementController : MonoBehaviour
         //Apply gravity to the character
         rigidBody.AddForce(Vector3.down * 9.8f, ForceMode.Acceleration);
 
-        //Look in the lookinput direction
         // Look in the look input direction
         pitch -= lookInput.y * cameraSensitivity * Time.deltaTime;
         yaw += lookInput.x * cameraSensitivity * Time.deltaTime;
-
-        // Clamp the pitch angle to prevent looking upside down
         pitch = Mathf.Clamp(pitch, -90f, 90f);
 
         // Apply the rotation to the camera
