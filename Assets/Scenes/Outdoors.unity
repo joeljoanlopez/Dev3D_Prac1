@@ -122,6 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &71559174 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8088702500880712084, guid: 41c19d545c858e5468189ce62ea56f3c, type: 3}
+  m_PrefabInstance: {fileID: 2219275113180199793}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9730f2bcbc61c1a4fb9ce7727f493045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &219716705
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +327,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1976920335809202336, guid: 41c19d545c858e5468189ce62ea56f3c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 71559174}
+    - target: {fileID: 1976920335809202336, guid: 41c19d545c858e5468189ce62ea56f3c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976920335809202336, guid: 41c19d545c858e5468189ce62ea56f3c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MovementController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976920335809202336, guid: 41c19d545c858e5468189ce62ea56f3c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2037717264275055295, guid: 41c19d545c858e5468189ce62ea56f3c, type: 3}
       propertyPath: m_Name
       value: Player
