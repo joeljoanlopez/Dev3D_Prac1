@@ -2,7 +2,7 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "Movement",
+            "name": "Player",
             "id": "903ebf52-0d34-4ebe-b22d-3796e3c33925",
             "actions": [
                 {
@@ -22,6 +22,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "0b96fd0d-89b8-47f0-93b7-992196309e17",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "ce57ce09-d8d9-46ea-aa2d-1f2dc3a2052d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "b8ed21d7-e958-4139-8365-b80ea9168350",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "a37425df-5828-40eb-b28f-6b33e8567573",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -82,6 +118,17 @@
                 },
                 {
                     "name": "",
+                    "id": "6e50a1d1-3c1c-4b49-9884-1f64ce840af8",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "61ce26d6-8fb8-46d0-93c1-c80ee1681159",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -90,45 +137,10 @@
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Action",
-            "id": "a1093f6d-5bdb-4bbb-a517-db4dc1b81bbe",
-            "actions": [
-                {
-                    "name": "Shoot",
-                    "type": "Button",
-                    "id": "06ed68fc-26e1-4f5a-9329-38dd28674e04",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
-                {
-                    "name": "Reload",
-                    "type": "Button",
-                    "id": "20711ae6-d0ae-4964-8461-fbe349d03936",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Crouch",
-                    "type": "Button",
-                    "id": "325cf6d3-b0ca-4c08-97b9-db66ee7b1054",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
                 {
                     "name": "",
-                    "id": "553b5660-dc7f-48a3-9616-196707ee5239",
+                    "id": "a2e0af3d-4244-4a33-bec4-9ba4de4e886f",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -139,7 +151,7 @@
                 },
                 {
                     "name": "",
-                    "id": "6728f847-8f0b-4bdc-8ca3-a60c4d5bd191",
+                    "id": "16827a13-f14d-48da-a650-a01349e52fc3",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
@@ -150,7 +162,7 @@
                 },
                 {
                     "name": "",
-                    "id": "c3b91871-6e36-4c3a-baab-2999e5f321da",
+                    "id": "1a11848b-98a7-4927-8774-27f28871b690",
                     "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
@@ -158,15 +170,31 @@
                     "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "18fc1ca1-6f79-4978-91f1-0e4fa3dd5ff9",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea477639-e405-46f2-8c5a-ea1ad90b37ab",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": [
-        {
-            "name": "Player",
-            "bindingGroup": "Player",
-            "devices": []
-        }
-    ]
+    "controlSchemes": []
 }
