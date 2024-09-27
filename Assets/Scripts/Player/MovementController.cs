@@ -13,7 +13,7 @@ public class MovementController : MonoBehaviour
     public float gravity = 9.81f;
 
     [Header("Camera Settings")]
-    public Camera mainCamera;
+    public GameObject mainCamera;
     public float cameraSensitivity = 1f;
 
     private PlayerInput playerInput;

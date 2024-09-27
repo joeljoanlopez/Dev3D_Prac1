@@ -32,10 +32,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 19.4, y: 1, z: 16.6}
-  m_LocalScale: {x: 0.775, y: 1, z: 0.4545141}
+  m_LocalScale: {x: 0.775, y: 0.9, z: 0.4545141}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1850489445361024896}
+  - {fileID: 8675234595352671982}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3138691341659430577
@@ -221,7 +221,7 @@ MonoBehaviour:
   maxSpeed: 10
   jumpForce: 5
   gravity: 9.81
-  mainCamera: {fileID: 4979883781211561315}
+  mainCamera: {fileID: 4481336801418998926}
   cameraSensitivity: 5
 --- !u!136 &7486668337678131886
 CapsuleCollider:
@@ -246,6 +246,38 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4481336801418998926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8675234595352671982}
+  m_Layer: 0
+  m_Name: PitchController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8675234595352671982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481336801418998926}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.582, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1850489445361024896}
+  m_Father: {fileID: 4930637475518803110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6122163016637965502
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,11 +305,11 @@ Transform:
   m_GameObject: {fileID: 6122163016637965502}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.047, y: 0.51, z: -0.09563255}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4930637475518803110}
+  m_Father: {fileID: 8675234595352671982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4979883781211561315
 Camera:
