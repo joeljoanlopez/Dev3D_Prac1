@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class MovementController : MonoBehaviour
 {
-
     [Header("Movement Settings")]
     public float acceleration = 5f;
     public float maxSpeed = 10f;
@@ -11,23 +10,30 @@ public class MovementController : MonoBehaviour
     [Header("Jump Settings")]
     public float jumpForce = 5f;
     public float gravity = 9.81f;
+    private bool jumping = false;
+    private Vector3 jumpVelocity = Vector3.zero;
 
     [Header("Camera Settings")]
-    public GameObject mainCamera;
+    public Transform pitchController;
     public float cameraSensitivity = 1f;
+    public float maxPitch = 90f;
+    public float minPitch = -90f;
 
     private PlayerInput playerInput;
-    private Rigidbody rigidBody;
-    
+    private CharacterController characterController;
     private Vector2 moveInput;
     private Vector2 lookInput;
+    private Vector3 velocity = Vector3.zero;
     private float verticalRotation = 0f;
     private float horizontalRotation = 0f;
 
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
-        rigidBody = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
+
+        horizontalRotation = transform.eulerAngles.y;
+        verticalRotation = pitchController.transform.eulerAngles.x;
     }
 
     /// Reads the input for movement and stores it in moveInput
@@ -39,7 +45,7 @@ public class MovementController : MonoBehaviour
     /// Reads the input for jumping and applies an upward force
     public void OnJump()
     {
-        rigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        jumping = true;
     }
 
     public void OnLook()
@@ -49,19 +55,37 @@ public class MovementController : MonoBehaviour
 
     private void Update()
     {
-        //Move the character based on the input
+        HandleMovement();
+        // HandleJump();
+        HandleCamera();
+    }
+
+    private void HandleMovement(){
         Vector3 targetVelocity = new Vector3(moveInput.x, 0f, moveInput.y) * maxSpeed;
-        rigidBody.velocity = Vector3.Lerp(GetComponent<Rigidbody>().velocity, targetVelocity, acceleration * Time.deltaTime);
+        velocity = Vector3.Lerp(velocity, targetVelocity, acceleration * Time.deltaTime);
+        characterController.Move(velocity * Time.deltaTime);
+    }
 
-        //Apply gravity to the character
-        rigidBody.AddForce(Vector3.down * gravity, ForceMode.Acceleration);
+    private void HandleJump(){
+        if (jumping)
+        {
+            Vector3 jumpTargetVelocity = Vector3.up * jumpForce;
+            jumpVelocity = Vector3.Lerp(jumpVelocity, jumpTargetVelocity, acceleration * Time.deltaTime);
+            characterController.Move(jumpVelocity * Time.deltaTime);
+            jumping = jumpVelocity.y != 0f;
+        }
+        else
+        {
+            characterController.Move(Vector3.down * gravity * Time.deltaTime);
+        }
+    }
 
-        // Look in the look input direction
-        verticalRotation -= lookInput.y * cameraSensitivity * Time.deltaTime;
+    private void  HandleCamera(){
         horizontalRotation += lookInput.x * cameraSensitivity * Time.deltaTime;
-        verticalRotation = Mathf.Clamp(verticalRotation, -90f, 90f);
+        verticalRotation -= lookInput.y * cameraSensitivity * Time.deltaTime;
+        verticalRotation = Mathf.Clamp(verticalRotation, minPitch, maxPitch);
 
-        // Apply the rotation to the camera
-        mainCamera.transform.localEulerAngles = new Vector3(verticalRotation, horizontalRotation, 0f);
+        transform.rotation = Quaternion.Euler(0f, horizontalRotation, 0f);
+        pitchController.transform.rotation = Quaternion.Euler(verticalRotation, 0f, 0f);
     }
 }
