@@ -60,13 +60,15 @@ public class MovementController : MonoBehaviour
         HandleCamera();
     }
 
-    private void HandleMovement(){
-        Vector3 targetVelocity = new Vector3(moveInput.x, 0f, moveInput.y) * maxSpeed;
+    private void HandleMovement()
+    {
+        Vector3 targetVelocity = (moveInput.x * transform.right + moveInput.y * transform.forward) * maxSpeed;
         velocity = Vector3.Lerp(velocity, targetVelocity, acceleration * Time.deltaTime);
         characterController.Move(velocity * Time.deltaTime);
     }
 
-    private void HandleJump(){
+    private void HandleJump()
+    {
         if (jumping)
         {
             Vector3 jumpTargetVelocity = Vector3.up * jumpForce;
@@ -80,12 +82,13 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    private void  HandleCamera(){
+    private void HandleCamera()
+    {
         horizontalRotation += lookInput.x * cameraSensitivity * Time.deltaTime;
         verticalRotation -= lookInput.y * cameraSensitivity * Time.deltaTime;
         verticalRotation = Mathf.Clamp(verticalRotation, minPitch, maxPitch);
 
-        transform.rotation = Quaternion.Euler(0f, horizontalRotation, 0f);
-        pitchController.transform.rotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+        transform.localRotation = Quaternion.Euler(0f, horizontalRotation, 0f);
+        pitchController.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
     }
 }
