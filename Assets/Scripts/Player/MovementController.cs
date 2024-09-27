@@ -18,10 +18,9 @@ public class MovementController : MonoBehaviour
 
     private PlayerInput playerInput;
     private Rigidbody rigidBody;
-
+    
     private Vector2 moveInput;
     private Vector2 lookInput;
-
     private float verticalRotation = 0f;
     private float horizontalRotation = 0f;
 
