@@ -1,3 +1,4 @@
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,13 +6,13 @@ public class MovementController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float acceleration = 5f;
-    public float maxSpeed = 10f;
+    public float walkMaxSpeed = 7f;
+    public float runMaxSpeed = 10f;
 
     [Header("Jump Settings")]
     public float jumpForce = 5f;
     public float gravity = 9.81f;
-    private bool jumping = false;
-    private Vector3 jumpVelocity = Vector3.zero;
+    private bool isGrounded = false;
 
     [Header("Camera Settings")]
     public Transform pitchController;
@@ -26,6 +27,7 @@ public class MovementController : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private float verticalRotation = 0f;
     private float horizontalRotation = 0f;
+    private CollisionFlags collisionFlags;
 
     private void Start()
     {
@@ -42,12 +44,6 @@ public class MovementController : MonoBehaviour
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
     }
 
-    /// Reads the input for jumping and applies an upward force
-    public void OnJump()
-    {
-        jumping = true;
-    }
-
     public void OnLook()
     {
         lookInput = playerInput.actions["Look"].ReadValue<Vector2>();
@@ -56,29 +52,36 @@ public class MovementController : MonoBehaviour
     private void Update()
     {
         HandleMovement();
-        // HandleJump();
+        HandleJump();
         HandleCamera();
+        collisionFlags = characterController.Move(velocity * Time.deltaTime);
+        if ((collisionFlags & CollisionFlags.Below) != 0)
+        {
+            velocity.y = 0f;
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
 
     private void HandleMovement()
     {
+        float maxSpeed = playerInput.actions["Run"].ReadValue<float>() == 1 ? runMaxSpeed : walkMaxSpeed;
         Vector3 targetVelocity = (moveInput.x * transform.right + moveInput.y * transform.forward) * maxSpeed;
         velocity = Vector3.Lerp(velocity, targetVelocity, acceleration * Time.deltaTime);
-        characterController.Move(velocity * Time.deltaTime);
     }
 
     private void HandleJump()
     {
-        if (jumping)
+        if (playerInput.actions["Jump"].WasPressedThisFrame())
         {
-            Vector3 jumpTargetVelocity = Vector3.up * jumpForce;
-            jumpVelocity = Vector3.Lerp(jumpVelocity, jumpTargetVelocity, acceleration * Time.deltaTime);
-            characterController.Move(jumpVelocity * Time.deltaTime);
-            jumping = jumpVelocity.y != 0f;
+            velocity.y = jumpForce;
         }
         else
         {
-            characterController.Move(Vector3.down * gravity * Time.deltaTime);
+            velocity.y -= gravity * Time.deltaTime;
         }
     }
 
