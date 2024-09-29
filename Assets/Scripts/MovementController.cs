@@ -74,7 +74,7 @@ public class MovementController : MonoBehaviour
 
     private void HandleJump()
     {
-        if (playerInput.actions["Jump"].WasPressedThisFrame())
+        if (playerInput.actions["Jump"].WasPressedThisFrame() && isGrounded)
         {
             velocity.y = jumpForce;
         }
