@@ -39,10 +39,12 @@ public class ActionController : MonoBehaviour {
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range)){
             Debug.Log(hit.transform.name);
             Target target = hit.transform.GetComponent<Target>();
-            if(target != null) 
+            if(target != null) {
                 target.TakeDamage(damage);
+                GameObject bullet = Instantiate(bulletEffect, hit.point, Quaternion.identity);
+                Destroy(bullet, 1f);
+            }
         }
 
-        GameObject bullet = Instantiate(bulletEffect, hit.point, Quaternion.identity);
     }
 }
