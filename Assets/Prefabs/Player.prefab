@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 4930637475518803110}
   - component: {fileID: 1976920335809202336}
   - component: {fileID: 8088702500880712084}
+  - component: {fileID: 2634738773412445723}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -227,6 +228,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a37425df-5828-40eb-b28f-6b33e8567573
     m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f1fe8aef-8409-4774-bbec-d2c648166136
+    m_ActionName: Player/Run[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -244,15 +249,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9730f2bcbc61c1a4fb9ce7727f493045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 4787543782059684883}
   acceleration: 5
-  maxSpeed: 10
+  walkMaxSpeed: 7
+  runMaxSpeed: 10
   jumpForce: 5
   gravity: 9.81
   pitchController: {fileID: 8675234595352671982}
   cameraSensitivity: 5
   maxPitch: 90
   minPitch: -90
+--- !u!143 &2634738773412445723
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037717264275055295}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.8
+  m_Radius: 0.4
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4481336801418998926
 GameObject:
   m_ObjectHideFlags: 0
