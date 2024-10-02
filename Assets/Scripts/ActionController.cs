@@ -19,15 +19,15 @@ public class ActionController : MonoBehaviour {
 
     private PlayerInput playerInput;
 
-    private void Start() {
+    private void Start(){
         playerInput = player.GetComponent<PlayerInput>();
     }
 
 
-    private void Update() {
+    private void Update(){
         shootTimer -= Time.deltaTime;
         bool canShoot = playerInput.actions["Shoot"].ReadValue<float>() == 1 && shootTimer <= 0f;
-        if (canShoot) {
+        if (canShoot){
             Shoot();
             shootTimer = shootRate;
         }
@@ -37,10 +37,9 @@ public class ActionController : MonoBehaviour {
         shootEffect.Play();
         RaycastHit hit;
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range)){
-            Debug.Log(hit.transform.name);
             Target target = hit.transform.GetComponent<Target>();
             if(target != null) {
-                target.TakeDamage(damage);
+                target.TakeDamage(damage, this.gameObject);
                 GameObject bullet = Instantiate(bulletEffect, hit.point, Quaternion.identity);
                 Destroy(bullet, 1f);
             }
