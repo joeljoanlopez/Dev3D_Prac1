@@ -28,7 +28,8 @@ public class MovementController : MonoBehaviour
     private float horizontalRotation = 0f;
     private CollisionFlags collisionFlags;
 
-    private void Start(){
+    private void Start()
+    {
         playerInput = GetComponent<PlayerInput>();
         characterController = GetComponent<CharacterController>();
 
@@ -37,44 +38,54 @@ public class MovementController : MonoBehaviour
     }
 
     /// Reads the input for movement and stores it in moveInput
-    public void OnMove(){
+    public void OnMove()
+    {
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
     }
 
-    public void OnLook(){
+    public void OnLook()
+    {
         lookInput = playerInput.actions["Look"].ReadValue<Vector2>();
     }
 
-    private void Update(){
+    private void Update()
+    {
         HandleMovement();
         HandleJump();
         HandleCamera();
         collisionFlags = characterController.Move(velocity * Time.deltaTime);
-        if ((collisionFlags & CollisionFlags.Below) != 0){
+        if ((collisionFlags & CollisionFlags.Below) != 0)
+        {
             velocity.y = 0f;
             isGrounded = true;
         }
-        else{
+        else
+        {
             isGrounded = false;
         }
     }
 
-    private void HandleMovement() {
+    private void HandleMovement()
+    {
         float maxSpeed = playerInput.actions["Run"].ReadValue<float>() == 1 ? runMaxSpeed : walkMaxSpeed;
         Vector3 targetVelocity = (moveInput.x * transform.right + moveInput.y * transform.forward) * maxSpeed;
         velocity = Vector3.Lerp(velocity, targetVelocity, acceleration * Time.deltaTime);
     }
 
-    private void HandleJump() {
-        if (playerInput.actions["Jump"].WasPressedThisFrame() && isGrounded){
+    private void HandleJump()
+    {
+        if (playerInput.actions["Jump"].WasPressedThisFrame() && isGrounded)
+        {
             velocity.y = jumpForce;
         }
-        else{
+        else
+        {
             velocity.y -= gravity * Time.deltaTime;
         }
     }
 
-    private void HandleCamera(){
+    private void HandleCamera()
+    {
         horizontalRotation += lookInput.x * cameraSensitivity * Time.deltaTime;
         verticalRotation -= lookInput.y * cameraSensitivity * Time.deltaTime;
         verticalRotation = Mathf.Clamp(verticalRotation, minPitch, maxPitch);

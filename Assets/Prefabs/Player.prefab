@@ -119,6 +119,8 @@ GameObject:
   - component: {fileID: 1976920335809202336}
   - component: {fileID: 8088702500880712084}
   - component: {fileID: 2634738773412445723}
+  - component: {fileID: 6539934593454037409}
+  - component: {fileID: 5605041463624992915}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -284,6 +286,34 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6539934593454037409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037717264275055295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2fde2effddb5e41845ea0b78bdd803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+--- !u!114 &5605041463624992915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037717264275055295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80f37b36e72ea94ca636163c19e485a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthManager: {fileID: 0}
+  maxShield: 100
+  shieldDamageReduction: 75
 --- !u!1 &4481336801418998926
 GameObject:
   m_ObjectHideFlags: 0
