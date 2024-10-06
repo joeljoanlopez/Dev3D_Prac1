@@ -7,15 +7,16 @@ public class ShieldManager : MonoBehaviour
     private PlayerInput playerInput;
 #endif
     public UIFillPercentage shieldBar;
-    private HealthManager healthManager;
     public float maxShield = 100f;
     public float shieldReductionPercentage = 75f;
     private float currentShield;
+    private HealthManager healthManager;
 
     private void Start()
     {
         currentShield = maxShield;
         healthManager = GetComponent<HealthManager>();
+        shieldBar.UpdateAmount(currentShield, maxShield);
 #if UNITY_EDITOR
         playerInput = GetComponent<PlayerInput>();
 #endif
@@ -23,7 +24,7 @@ public class ShieldManager : MonoBehaviour
 
     private void Update()
     {
-        Mathf.Clamp(currentShield, 0f, maxShield);
+        currentShield = Mathf.Clamp(currentShield, 0f, maxShield);
 #if UNITY_EDITOR
         if (playerInput.actions["AddShield"].WasPressedThisFrame())
         {
@@ -39,7 +40,7 @@ public class ShieldManager : MonoBehaviour
     public void AddShield(float amount)
     {
         currentShield += amount;
-        shieldBar.UpdateAmount(currentShield);
+        shieldBar.UpdateAmount(currentShield, maxShield);
     }
 
     public void TakeDamage(float amount)
@@ -54,6 +55,6 @@ public class ShieldManager : MonoBehaviour
         {
             healthManager.TakeDamage(amount);
         }
-        shieldBar.UpdateAmount(currentShield);
+        shieldBar.UpdateAmount(currentShield, maxShield);
     }
 }
