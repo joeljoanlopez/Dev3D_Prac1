@@ -14,8 +14,6 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        scoreBar.UpdateAmount(score, winScore);
-
 #if UNITY_EDITOR
         playerInput = GetComponent<PlayerInput>();
 #endif
@@ -24,6 +22,7 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
         score = Mathf.Clamp(score, 0f, winScore);
+        scoreBar.UpdateAmount(score, winScore);
 
         if (score >= winScore)
         {
@@ -46,13 +45,11 @@ public class ScoreManager : MonoBehaviour
     private void Restart()
     {
         score = 0f;
-        scoreBar.UpdateAmount(score, winScore);
     }
 
     public void AddScore(float amount)
     {
         score += amount;
-        scoreBar.UpdateAmount(score, winScore);
     }
 
 }

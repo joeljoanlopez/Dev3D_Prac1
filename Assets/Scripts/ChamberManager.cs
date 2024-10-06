@@ -14,12 +14,12 @@ public class ChamberManager : MonoBehaviour
     {
         currentAmmo = maxChamber;
         ammoManager = GetComponent<AmmoManager>();
-        chamberBar.UpdateAmount(currentAmmo, maxChamber);
     }
 
     private void Update()
     {
         currentAmmo = Mathf.Clamp(currentAmmo, 0f, maxChamber);
+        chamberBar.UpdateAmount(currentAmmo, maxChamber);
         if (playerInput.actions["Reload"].WasPressedThisFrame())
         {
             Reload();
@@ -29,14 +29,12 @@ public class ChamberManager : MonoBehaviour
     public void Reload()
     {
         currentAmmo += ammoManager.Reload(maxChamber - currentAmmo);
-        chamberBar.UpdateAmount(currentAmmo, maxChamber);
     }
 
     public bool Shoot()
     {
         bool canShoot = currentAmmo > 0;
         if (canShoot) currentAmmo--;
-        chamberBar.UpdateAmount(currentAmmo, maxChamber);
         return canShoot;
     }
 }

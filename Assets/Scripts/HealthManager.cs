@@ -14,7 +14,6 @@ public class HealthManager : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        healthBar.UpdateAmount(currentHealth, maxHealth);
 
 #if UNITY_EDITOR
         playerInput = GetComponent<PlayerInput>();
@@ -24,6 +23,7 @@ public class HealthManager : MonoBehaviour
     private void Update()
     {
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        healthBar.UpdateAmount(currentHealth, maxHealth);
 
 #if UNITY_EDITOR
         if (playerInput.actions["AddHealth"].WasPressedThisFrame())
@@ -44,13 +44,11 @@ public class HealthManager : MonoBehaviour
         {
             Die();
         }
-        healthBar.UpdateAmount(currentHealth, maxHealth);
     }
 
     public void AddHealth(float amount)
     {
         currentHealth += amount;
-        healthBar.UpdateAmount(currentHealth, maxHealth);
     }
 
     private void Die()
