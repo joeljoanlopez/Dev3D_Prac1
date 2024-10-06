@@ -10,6 +10,6 @@ public class UIFillPercentage : MonoBehaviour
     {
         amount = Mathf.Clamp(amount, 0f, maxAmount);
         text.text = amount.ToString();
-        image.fillAmount = amount / 100f;
+        image.fillAmount = amount / maxAmount;
     }
 }

@@ -3,20 +3,22 @@ using UnityEngine.InputSystem;
 
 public class ShieldManager : MonoBehaviour
 {
-#if UNITY_EDITOR
-    private PlayerInput playerInput;
-#endif
     public UIFillPercentage shieldBar;
     public float maxShield = 100f;
     public float shieldReductionPercentage = 75f;
     private float currentShield;
     private HealthManager healthManager;
 
+#if UNITY_EDITOR
+    private PlayerInput playerInput;
+#endif
+
     private void Start()
     {
         currentShield = maxShield;
         healthManager = GetComponent<HealthManager>();
         shieldBar.UpdateAmount(currentShield, maxShield);
+
 #if UNITY_EDITOR
         playerInput = GetComponent<PlayerInput>();
 #endif
@@ -25,6 +27,7 @@ public class ShieldManager : MonoBehaviour
     private void Update()
     {
         currentShield = Mathf.Clamp(currentShield, 0f, maxShield);
+
 #if UNITY_EDITOR
         if (playerInput.actions["AddShield"].WasPressedThisFrame())
         {

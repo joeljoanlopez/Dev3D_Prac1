@@ -15,10 +15,10 @@ public class Target : MonoBehaviour
             Die();
         }
 
-        ScoreController scoreController = source.GetComponent<ScoreController>();
+        ScoreManager scoreController = source.GetComponent<ScoreManager>();
         if (scoreController != null)
         {
-            scoreController.AddPoints(points);
+            scoreController.AddScore(points);
         }
     }
 

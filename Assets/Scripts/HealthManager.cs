@@ -3,17 +3,19 @@ using UnityEngine.InputSystem;
 
 public class HealthManager : MonoBehaviour
 {
-#if UNITY_EDITOR
-    private PlayerInput playerInput;
-#endif
     public UIFillPercentage healthBar;
     public float maxHealth = 100f;
     private float currentHealth;
+
+#if UNITY_EDITOR
+    private PlayerInput playerInput;
+#endif
 
     private void Start()
     {
         currentHealth = maxHealth;
         healthBar.UpdateAmount(currentHealth, maxHealth);
+
 #if UNITY_EDITOR
         playerInput = GetComponent<PlayerInput>();
 #endif
@@ -22,6 +24,7 @@ public class HealthManager : MonoBehaviour
     private void Update()
     {
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+
 #if UNITY_EDITOR
         if (playerInput.actions["AddHealth"].WasPressedThisFrame())
         {
