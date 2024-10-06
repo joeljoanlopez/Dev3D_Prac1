@@ -46,6 +46,7 @@ public class ScoreManager : MonoBehaviour
     private void Restart()
     {
         score = 0f;
+        scoreBar.UpdateAmount(score, winScore);
     }
 
     public void AddScore(float amount)
