@@ -6,6 +6,7 @@ public class PatrolState : StateBlueprint
     public PathFollower path;
     public override void OnEnter(FSM fsm)
     {
+        this.path = fsm.pathFollower;
         path.Move();
     }
 
