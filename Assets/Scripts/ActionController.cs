@@ -53,6 +53,5 @@ public class ActionController : MonoBehaviour
                 Destroy(bullet, 1f);
             }
         }
-
     }
 }

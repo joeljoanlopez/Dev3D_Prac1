@@ -14,7 +14,6 @@ public class IdleState : StateBlueprint
     public override void OnStay(FSM fsm)
     {
         currentTime -= Time.deltaTime;
-        Debug.Log(currentTime);
         if (currentTime <= 0f)
         {
             fsm.ChangeState("Patrol");

@@ -10,6 +10,8 @@ public class FSM : MonoBehaviour
     public Dictionary<string, StateBlueprint> StateDictionary { get { return stateDictionary; } }
 
     private StateBlueprint currentState;
+
+    [Header("Custom Parameters")]
     public PathFollower pathFollower;
 
     private void Start()
