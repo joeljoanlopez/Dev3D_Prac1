@@ -3,11 +3,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "States/PatrolState")]
 public class PatrolState : StateBlueprint
 {
-    public void OnEnter(FSM fsm)
+    public PathFollower path;
+    public override void OnEnter(FSM fsm)
     {
-        Debug.Log("Patrolling");
+        path.Move();
     }
-    public void OnStay(FSM fsm) { return; }
 
-    public void OnExit(FSM fsm) { return; }
+    public override void OnStay(FSM fsm)
+    {
+        if (path.ArrivedAtNode())
+        {
+            path.NextNode();
+            fsm.ChangeState("Idle");
+        }
+    }
+
+    public override void OnExit(FSM fsm) { return; }
 }

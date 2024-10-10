@@ -6,19 +6,20 @@ public class IdleState : StateBlueprint
     public float idleTime = 1f;
     private float currentTime = 0f;
 
-    public void OnEnter(FSM fsm)
+    public override void OnEnter(FSM fsm)
     {
         currentTime = idleTime;
     }
 
-    public void OnStay(FSM fsm)
+    public override void OnStay(FSM fsm)
     {
         currentTime -= Time.deltaTime;
+        Debug.Log(currentTime);
         if (currentTime <= 0f)
         {
-            fsm.ChangeState("PatrolState");
+            fsm.ChangeState("Patrol");
         }
     }
 
-    public void OnExit(FSM fsm) { return; }
+    public override void OnExit(FSM fsm) { return; }
 }
