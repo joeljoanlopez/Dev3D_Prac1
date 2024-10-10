@@ -2,45 +2,43 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FSM<T> where T : Enum
+public class FSM : MonoBehaviour
 {
-    public T currentState;
+    public List<StateBlueprint> availableStates;  // List of available states
+    public StateBlueprint initialState;
+    private Dictionary<string, StateBlueprint> stateDictionary; // Dictionary of available states
+    public Dictionary<string, StateBlueprint> StateDictionary { get { return stateDictionary; } }
 
-    Dictionary<T, FSMState> AllStates;
+    private StateBlueprint currentState;
 
-    public FSM(T initState)
+    private void Start()
     {
-        AllStates = new Dictionary<T, FSMState>();
-        foreach (T state in Enum.GetValues(typeof(T)))
+        stateDictionary = new Dictionary<string, StateBlueprint>();
+
+        foreach (var state in availableStates)
         {
-            AllStates.Add(state, new FSMState());
+            stateDictionary[state.stateName] = state;
         }
+
+        ChangeState(initialState.stateName);
     }
 
-    public void Update()
+    private void Update()
     {
-        AllStates[currentState].onStay?.Invoke();
+        currentState?.OnStay(this);
     }
 
-    public void ChangeState(T newState)
+    public void ChangeState(string newState)
     {
-        AllStates[currentState].onExit?.Invoke();
-        currentState = newState;
-        AllStates[currentState].onEnter?.Invoke();
-    }
-
-    public void SetOnStay(T state, Action action)
-    {
-        AllStates[state].onStay = action;
-    }
-
-    public void SetOnEnter(T state, Action action)
-    {
-        AllStates[state].onEnter = action;
-    }
-
-    public void SetOnExit(T state, Action action)
-    {
-        AllStates[state].onExit = action;
+        if (stateDictionary.ContainsKey(newState))
+        {
+            currentState?.OnExit(this);
+            currentState = stateDictionary[newState];
+            currentState?.OnEnter(this);
+        }
+        else
+        {
+            Debug.Log("State not found: " + newState);
+        }
     }
 }

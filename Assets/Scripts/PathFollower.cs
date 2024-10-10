@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class NodeFollower : MonoBehaviour
+public class PathFollower : MonoBehaviour
 {
-    public Node nodes;
+    public Path path;
     public float speed = 5f;
     public float changeOffset = 0.01f;
 
@@ -12,7 +12,7 @@ public class NodeFollower : MonoBehaviour
     void Start()
     {
         isMoving = false;
-        currentNode = nodes.GetNextNode(currentNode);
+        currentNode = path.GetNextNode(currentNode);
         transform.position = currentNode.position;
     }
 
@@ -31,7 +31,7 @@ public class NodeFollower : MonoBehaviour
 
     public void NextNode()
     {
-        currentNode = nodes.GetNextNode(currentNode);
+        currentNode = path.GetNextNode(currentNode);
         isMoving = false;
     }
 
