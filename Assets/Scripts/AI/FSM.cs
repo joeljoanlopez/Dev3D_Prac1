@@ -1,18 +1,21 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FSM : MonoBehaviour
 {
-    public List<StateBlueprint> availableStates;  // List of available states
+    public List<StateBlueprint> availableStates; // List of available states
     public StateBlueprint initialState;
     private Dictionary<string, StateBlueprint> stateDictionary; // Dictionary of available states
-    public Dictionary<string, StateBlueprint> StateDictionary { get { return stateDictionary; } }
+
+    public Dictionary<string, StateBlueprint> StateDictionary
+    {
+        get { return stateDictionary; }
+    }
 
     private StateBlueprint currentState;
+    public StateBlueprint previousState;
 
-    [Header("Custom Parameters")]
-    public PathFollower pathFollower;
+    [Header("Custom Parameters")] public PathFollower pathFollower;
 
     public GameObject player;
 
@@ -39,6 +42,7 @@ public class FSM : MonoBehaviour
         if (stateDictionary.ContainsKey(newState))
         {
             currentState?.OnExit(this);
+            previousState = currentState;
             currentState = stateDictionary[newState];
             currentState?.OnEnter(this);
         }
