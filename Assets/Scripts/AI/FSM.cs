@@ -14,6 +14,8 @@ public class FSM : MonoBehaviour
     [Header("Custom Parameters")]
     public PathFollower pathFollower;
 
+    public GameObject player;
+
     private void Start()
     {
         stateDictionary = new Dictionary<string, StateBlueprint>();
