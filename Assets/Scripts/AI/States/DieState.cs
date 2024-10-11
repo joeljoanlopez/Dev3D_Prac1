@@ -14,10 +14,7 @@ public class DieState : StateBlueprint
     public override void OnStay(FSM fsm)
     {
         UpdateTimer();
-        if (currentTime <= 0)
-        {
-            Destroy(fsm.gameObject);
-        }
+        if (currentTime <= 0) Destroy(fsm.gameObject);
     }
 
     public override void OnExit(FSM fsm)

@@ -6,9 +6,9 @@ public class ChamberManager : MonoBehaviour
     public PlayerInput playerInput;
     public UIFillPercentage chamberBar;
     public float maxChamber = 10f;
+    private AmmoManager ammoManager;
 
     private float currentAmmo;
-    private AmmoManager ammoManager;
 
     private void Start()
     {
@@ -20,10 +20,7 @@ public class ChamberManager : MonoBehaviour
     {
         currentAmmo = Mathf.Clamp(currentAmmo, 0f, maxChamber);
         chamberBar.UpdateAmount(currentAmmo, maxChamber);
-        if (playerInput.actions["Reload"].WasPressedThisFrame())
-        {
-            Reload();
-        }
+        if (playerInput.actions["Reload"].WasPressedThisFrame()) Reload();
     }
 
     public void Reload()
@@ -33,7 +30,7 @@ public class ChamberManager : MonoBehaviour
 
     public bool Shoot()
     {
-        bool canShoot = currentAmmo > 0;
+        var canShoot = currentAmmo > 0;
         if (canShoot) currentAmmo--;
         return canShoot;
     }

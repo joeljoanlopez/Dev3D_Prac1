@@ -5,12 +5,12 @@ public class ScoreManager : MonoBehaviour
 {
     public UIFillPercentage scoreBar;
     public float winScore = 1000f;
-    private float score = 0f;
-    private bool gameOver = false;
+    private bool gameOver;
 
 #if UNITY_EDITOR
     private PlayerInput playerInput;
 #endif
+    private float score;
 
     private void Start()
     {
@@ -30,15 +30,10 @@ public class ScoreManager : MonoBehaviour
             Debug.Log("YOU WIN! Press T to restart");
         }
 
-        if (gameOver && playerInput.actions["Restart"].WasPressedThisFrame())
-        {
-            Restart();
-        }
+        if (gameOver && playerInput.actions["Restart"].WasPressedThisFrame()) Restart();
 
 #if UNITY_EDITOR
-        if (playerInput.actions["AddScore"].WasPressedThisFrame()){
-            AddScore(10f);
-        }
+        if (playerInput.actions["AddScore"].WasPressedThisFrame()) AddScore(10f);
 #endif
     }
 
@@ -51,5 +46,4 @@ public class ScoreManager : MonoBehaviour
     {
         score += amount;
     }
-
 }

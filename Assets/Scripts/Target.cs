@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-
     public bool canDie = true;
     public float health = 50f;
     public float points = 10f;
@@ -15,14 +14,11 @@ public class Target : MonoBehaviour
             Die();
         }
 
-        ScoreManager scoreManager = source.GetComponent<ScoreManager>();
-        if (scoreManager != null)
-        {
-            scoreManager.AddScore(points);
-        }
+        var scoreManager = source.GetComponent<ScoreManager>();
+        if (scoreManager != null) scoreManager.AddScore(points);
     }
 
-    void Die()
+    private void Die()
     {
         Destroy(gameObject);
     }

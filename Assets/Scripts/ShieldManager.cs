@@ -30,13 +30,8 @@ public class ShieldManager : MonoBehaviour
 
 #if UNITY_EDITOR
         if (playerInput.actions["AddShield"].WasPressedThisFrame())
-        {
             AddShield(10f);
-        }
-        else if (playerInput.actions["DamageShield"].WasPressedThisFrame())
-        {
-            TakeDamage(10f);
-        }
+        else if (playerInput.actions["DamageShield"].WasPressedThisFrame()) TakeDamage(10f);
 #endif
     }
 
@@ -49,7 +44,7 @@ public class ShieldManager : MonoBehaviour
     {
         if (currentShield > 0)
         {
-            float shieldDamage = amount * shieldReductionPercentage / 100;
+            var shieldDamage = amount * shieldReductionPercentage / 100;
             currentShield -= shieldDamage;
             healthManager.TakeDamage(amount - shieldDamage);
         }

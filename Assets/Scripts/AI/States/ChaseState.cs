@@ -1,20 +1,18 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ChaseState", menuName = "FSM/ChaseState", order = 0)]
 public class ChaseState : StateBlueprint
 {
-    [Header("Distances")] 
-    public float chaseDistance = 50f;
+    [Header("Distances")] public float chaseDistance = 50f;
+
     public float maxChaseDistance = 100f;
-    private float currentChaseDistance;
 
     [Header("Movement")] public float speed = 10f;
-
-    [Header("Info")] 
-    private Vector3 playerPosition;
+    private float currentChaseDistance;
     private Vector3 currentPosition;
     private Transform myTransform;
+
+    [Header("Info")] private Vector3 playerPosition;
 
     public override void OnEnter(FSM fsm)
     {
@@ -26,13 +24,8 @@ public class ChaseState : StateBlueprint
         UpdatePositions(fsm);
         MoveTowardsTarget();
         if (currentChaseDistance < chaseDistance)
-        {
             fsm.ChangeState("Attack");
-        }
-        else if (currentChaseDistance > maxChaseDistance)
-        {
-            fsm.ChangeState("Alert");
-        }
+        else if (currentChaseDistance > maxChaseDistance) fsm.ChangeState("Alert");
     }
 
     public override void OnExit(FSM fsm)
@@ -49,6 +42,6 @@ public class ChaseState : StateBlueprint
 
     private void MoveTowardsTarget()
     {
-        myTransform.position = Vector3.MoveTowards(currentPosition, this.playerPosition, speed * Time.deltaTime);
+        myTransform.position = Vector3.MoveTowards(currentPosition, playerPosition, speed * Time.deltaTime);
     }
 }

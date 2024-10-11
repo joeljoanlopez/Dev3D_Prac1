@@ -25,7 +25,7 @@ public class AmmoManager : MonoBehaviour
 
     public float Reload(float amount)
     {
-        float reloadAmount = currentAmmo - amount >= 0f ? amount : currentAmmo;
+        var reloadAmount = currentAmmo - amount >= 0f ? amount : currentAmmo;
         currentAmmo -= amount;
         return reloadAmount;
     }

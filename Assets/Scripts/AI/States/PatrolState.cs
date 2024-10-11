@@ -1,12 +1,13 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/PatrolState")]
+[CreateAssetMenu(menuName = "FSM/PatrolState")]
 public class PatrolState : StateBlueprint
 {
     public PathFollower path;
+
     public override void OnEnter(FSM fsm)
     {
-        this.path = fsm.pathFollower;
+        path = fsm.pathFollower;
         path.Move();
     }
 
@@ -19,5 +20,7 @@ public class PatrolState : StateBlueprint
         }
     }
 
-    public override void OnExit(FSM fsm) { return; }
+    public override void OnExit(FSM fsm)
+    {
+    }
 }

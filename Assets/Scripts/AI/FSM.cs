@@ -5,29 +5,22 @@ public class FSM : MonoBehaviour
 {
     public List<StateBlueprint> availableStates; // List of available states
     public StateBlueprint initialState;
-    private Dictionary<string, StateBlueprint> stateDictionary; // Dictionary of available states
-
-    public Dictionary<string, StateBlueprint> StateDictionary
-    {
-        get { return stateDictionary; }
-    }
-
-    private StateBlueprint currentState;
     public StateBlueprint previousState;
 
     [Header("Custom Parameters")] public PathFollower pathFollower;
 
     public GameObject player;
 
+    private StateBlueprint currentState;
+
+    public Dictionary<string, StateBlueprint> StateDictionary { get; private set; }
+
     private void Start()
     {
-        stateDictionary = new Dictionary<string, StateBlueprint>();
+        StateDictionary = new Dictionary<string, StateBlueprint>();
         pathFollower = GetComponent<PathFollower>();
 
-        foreach (var state in availableStates)
-        {
-            stateDictionary[state.stateName] = state;
-        }
+        foreach (var state in availableStates) StateDictionary[state.stateName] = state;
 
         ChangeState(initialState.stateName);
     }
@@ -39,11 +32,11 @@ public class FSM : MonoBehaviour
 
     public void ChangeState(string newState)
     {
-        if (stateDictionary.ContainsKey(newState))
+        if (StateDictionary.ContainsKey(newState))
         {
             currentState?.OnExit(this);
             previousState = currentState;
-            currentState = stateDictionary[newState];
+            currentState = StateDictionary[newState];
             currentState?.OnEnter(this);
         }
         else

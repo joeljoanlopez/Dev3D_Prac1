@@ -3,23 +3,23 @@ using UnityEngine.InputSystem;
 
 public class ActionController : MonoBehaviour
 {
-    [Header("Controllers")]
-    public GameObject player;
+    [Header("Controllers")] public GameObject player;
+
     public Camera cam;
 
-    [Header("Effects")]
-    public GameObject bulletEffect;
+    [Header("Effects")] public GameObject bulletEffect;
+
     public ParticleSystem shootEffect;
 
-    [Header("Gun")]
-    public float damage = 10f;
+    [Header("Gun")] public float damage = 10f;
+
     public float range = 100f;
     public float shootRate = 0.5f;
-    private float shootTimer = 0f;
     private ChamberManager chamberManager;
 
 
     private PlayerInput playerInput;
+    private float shootTimer;
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class ActionController : MonoBehaviour
     private void Update()
     {
         shootTimer -= Time.deltaTime;
-        bool canShoot = playerInput.actions["Shoot"].WasPressedThisFrame() && shootTimer <= 0f;
+        var canShoot = playerInput.actions["Shoot"].WasPressedThisFrame() && shootTimer <= 0f;
         if (canShoot && chamberManager.Shoot())
         {
             Shoot();
@@ -45,11 +45,11 @@ public class ActionController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
-            Target target = hit.transform.GetComponent<Target>();
+            var target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
                 target.TakeDamage(damage, player);
-                GameObject bullet = Instantiate(bulletEffect, hit.point, Quaternion.identity);
+                var bullet = Instantiate(bulletEffect, hit.point, Quaternion.identity);
                 Destroy(bullet, 1f);
             }
         }

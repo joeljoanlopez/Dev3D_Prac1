@@ -7,21 +7,19 @@ public class PathFollower : MonoBehaviour
     public float changeOffset = 0.01f;
 
     private Transform currentNode;
-    bool isMoving = false;
+    private bool isMoving;
 
-    void Start()
+    private void Start()
     {
         isMoving = false;
         currentNode = path.GetNextNode(currentNode);
         transform.position = currentNode.position;
     }
 
-    void Update()
+    private void Update()
     {
         if (isMoving)
-        {
             transform.position = Vector3.MoveTowards(transform.position, currentNode.position, speed * Time.deltaTime);
-        }
     }
 
     public void Move()

@@ -3,9 +3,9 @@
 public class HitManager : MonoBehaviour
 {
     public string hitState;
+    private FSM fsm;
 
     private bool wasJustHit;
-    private FSM fsm;
 
     private void Start()
     {

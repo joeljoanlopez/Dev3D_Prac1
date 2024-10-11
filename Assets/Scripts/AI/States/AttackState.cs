@@ -1,11 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "AttackState", menuName = "FSM/AttackState")]
 public class AttackState : StateBlueprint
 {
-    [Header("Attack Parameters")]
-    public float damage = 10f;
+    [Header("Attack Parameters")] public float damage = 10f;
+
     public float range = 10f;
     public float fireRate = 1f;
     private float nextFire;
@@ -18,9 +17,9 @@ public class AttackState : StateBlueprint
     public override void OnStay(FSM fsm)
     {
         if (IsNull(fsm.player)) return;
-        
+
         UpdateCooldown();
-        
+
         if (nextFire <= 0)
         {
             Attack(fsm.player);
@@ -65,6 +64,7 @@ public class AttackState : StateBlueprint
             Debug.LogWarning("FSM player is null.");
             return true;
         }
+
         return false;
     }
 }

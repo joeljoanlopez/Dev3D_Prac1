@@ -23,30 +23,19 @@ public class HealthManager : MonoBehaviour
     private void Update()
     {
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
-        if (healthBar != null)
-        {
-            healthBar.UpdateAmount(currentHealth, maxHealth);
-        }
+        if (healthBar != null) healthBar.UpdateAmount(currentHealth, maxHealth);
 
 #if UNITY_EDITOR
         if (playerInput.actions["AddHealth"].WasPressedThisFrame())
-        {
             AddHealth(10f);
-        }
-        else if (playerInput.actions["DamageHealth"].WasPressedThisFrame())
-        {
-            TakeDamage(10f);
-        }
+        else if (playerInput.actions["DamageHealth"].WasPressedThisFrame()) TakeDamage(10f);
 #endif
     }
 
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+        if (currentHealth <= 0) Die();
     }
 
     public void AddHealth(float amount)
@@ -56,6 +45,6 @@ public class HealthManager : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log(this.gameObject.name + " died");
+        Debug.Log(gameObject.name + " died");
     }
 }
