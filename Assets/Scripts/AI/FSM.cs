@@ -3,13 +3,17 @@ using UnityEngine;
 
 public class FSM : MonoBehaviour
 {
+    [Header("List of States")]
     public List<StateBlueprint> availableStates; // List of available states
     public StateBlueprint initialState;
     public StateBlueprint previousState;
 
-    [Header("Custom Parameters")] public PathFollower pathFollower;
-
+    [Header("Custom Parameters")]
+    public PathFollower pathFollower;
     public GameObject player;
+    public float attackDistance = 50f;
+    public float chaseDistance = 100f;
+    public float detectionRange = 150f;
 
     private StateBlueprint currentState;
 

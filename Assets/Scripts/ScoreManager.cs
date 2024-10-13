@@ -5,6 +5,7 @@ public class ScoreManager : MonoBehaviour
 {
     public UIFillPercentage scoreBar;
     public float winScore = 1000f;
+    
     private bool gameOver;
 
 #if UNITY_EDITOR

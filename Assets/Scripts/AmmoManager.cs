@@ -18,9 +18,11 @@ public class AmmoManager : MonoBehaviour
         ammoBar.UpdateAmount(currentAmmo, maxAmmo);
     }
 
-    public void AddAmmo(float amount)
+    public bool AddAmmo(float amount)
     {
+        if (currentAmmo >= maxAmmo) return false;
         currentAmmo += amount;
+        return true;
     }
 
     public float Reload(float amount)

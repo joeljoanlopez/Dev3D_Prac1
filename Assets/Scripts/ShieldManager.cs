@@ -6,6 +6,7 @@ public class ShieldManager : MonoBehaviour
     public UIFillPercentage shieldBar;
     public float maxShield = 100f;
     public float shieldReductionPercentage = 75f;
+
     private float currentShield;
     private HealthManager healthManager;
 
@@ -35,9 +36,11 @@ public class ShieldManager : MonoBehaviour
 #endif
     }
 
-    public void AddShield(float amount)
+    public bool AddShield(float amount)
     {
+        if (currentShield >= maxShield) return false;
         currentShield += amount;
+        return true;
     }
 
     public void TakeDamage(float amount)

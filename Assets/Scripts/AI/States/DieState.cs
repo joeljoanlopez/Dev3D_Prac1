@@ -4,6 +4,7 @@
 public class DieState : StateBlueprint
 {
     public float deathTime = 1f;
+    
     private float currentTime;
 
     public override void OnEnter(FSM fsm)

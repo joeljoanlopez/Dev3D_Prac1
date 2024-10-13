@@ -4,6 +4,7 @@
 public class HitState : StateBlueprint
 {
     public float hitStunTime = 0.5f;
+    
     private float currentTime;
 
     public override void OnEnter(FSM fsm)

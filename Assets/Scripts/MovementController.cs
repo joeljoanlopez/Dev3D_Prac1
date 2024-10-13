@@ -8,22 +8,22 @@ public class MovementController : MonoBehaviour
     public float walkMaxSpeed = 7f;
     public float runMaxSpeed = 10f;
 
-    [Header("Jump Settings")] public float jumpForce = 5f;
-
+    [Header("Jump Settings")] 
+    public float jumpForce = 5f;
     public float gravity = 9.81f;
 
-    [Header("Camera Settings")] public Transform pitchController;
-
+    [Header("Camera Settings")]
+    public Transform pitchController;
     public float cameraSensitivity = 1f;
     public float maxPitch = 90f;
     public float minPitch = -90f;
+    
     private CharacterController characterController;
     private CollisionFlags collisionFlags;
     private float horizontalRotation;
     private bool isGrounded;
     private Vector2 lookInput;
     private Vector2 moveInput;
-
     private PlayerInput playerInput;
     private Vector3 velocity = Vector3.zero;
     private float verticalRotation;

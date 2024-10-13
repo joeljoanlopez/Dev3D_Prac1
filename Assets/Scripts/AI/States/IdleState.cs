@@ -4,6 +4,7 @@ using UnityEngine;
 public class IdleState : StateBlueprint
 {
     public float idleTime = 1f;
+    
     private float currentTime;
 
     public override void OnEnter(FSM fsm)

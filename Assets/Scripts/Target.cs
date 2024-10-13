@@ -8,14 +8,18 @@ public class Target : MonoBehaviour
 
     public void TakeDamage(float amount, GameObject source)
     {
+        var scoreManager = source.GetComponent<ScoreManager>();
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore(points);
+        }
+
+
         if (health <= 0f && canDie)
         {
             health -= amount;
             Die();
         }
-
-        var scoreManager = source.GetComponent<ScoreManager>();
-        if (scoreManager != null) scoreManager.AddScore(points);
     }
 
     private void Die()

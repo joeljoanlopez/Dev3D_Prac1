@@ -1,12 +1,14 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting.FullSerializer;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "AttackState", menuName = "FSM/AttackState")]
 public class AttackState : StateBlueprint
 {
-    [Header("Attack Parameters")] public float damage = 10f;
-
+    [Header("Attack Parameters")]
+    public float damage = 10f;
     public float range = 10f;
     public float fireRate = 1f;
+
     private float nextFire;
 
     public override void OnEnter(FSM fsm)
@@ -16,7 +18,10 @@ public class AttackState : StateBlueprint
 
     public override void OnStay(FSM fsm)
     {
-        if (IsNull(fsm.player)) return;
+        if (IsNull(fsm.player))
+        {
+            return;
+        }
 
         UpdateCooldown();
 
@@ -25,12 +30,16 @@ public class AttackState : StateBlueprint
             Attack(fsm.player);
             ResetCooldown();
         }
+
+        float playerDistance = Vector3.Distance(fsm.transform.position, fsm.player.transform.position);
+
+        if (playerDistance > fsm.attackDistance)
+        {
+            fsm.ChangeState("Chase");
+        }
     }
 
-    public override void OnExit(FSM fsm)
-    {
-        // No specific exit logic
-    }
+    public override void OnExit(FSM fsm) { }
 
     private void Attack(GameObject target)
     {

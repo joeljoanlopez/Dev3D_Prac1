@@ -6,8 +6,8 @@ public class ChamberManager : MonoBehaviour
     public PlayerInput playerInput;
     public UIFillPercentage chamberBar;
     public float maxChamber = 10f;
+    
     private AmmoManager ammoManager;
-
     private float currentAmmo;
 
     private void Start()
