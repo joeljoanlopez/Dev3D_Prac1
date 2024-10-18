@@ -67,8 +67,8 @@ public class MovementController : MonoBehaviour
 
     private void HandleMovement()
     {
-        var maxSpeed = playerInput.actions["Run"].ReadValue<float>() == 1 ? runMaxSpeed : walkMaxSpeed;
-        var targetVelocity = (moveInput.x * transform.right + moveInput.y * transform.forward) * maxSpeed;
+        float maxSpeed = playerInput.actions["Run"].IsPressed() ? runMaxSpeed : walkMaxSpeed;
+        Vector3 targetVelocity = (moveInput.x * transform.right + moveInput.y * transform.forward) * maxSpeed;
         velocity = Vector3.Lerp(velocity, targetVelocity, acceleration * Time.deltaTime);
     }
 
