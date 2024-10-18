@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour
@@ -10,22 +11,28 @@ public class DoorController : MonoBehaviour
     }
 
     public Type type;
-    public GameObject doorRenderer;
+    public GameObject[] doorRenderers;
     private bool hasKey;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject != doorRenderer && CanOpenDoor(other))
+        if (!doorRenderers.Contains(other.gameObject) && CanOpenDoor(other))
         {
-            OpenDoor();
+            foreach (var door in doorRenderers)
+            {
+                OpenDoor(door);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject != doorRenderer)
+        if (!doorRenderers.Contains(other.gameObject))
         {
-            CloseDoor();
+            foreach (var door in doorRenderers)
+            {
+                CloseDoor(door);
+            }
         }
     }
 
@@ -44,14 +51,14 @@ public class DoorController : MonoBehaviour
         }
     }
 
-    private void OpenDoor()
+    private void OpenDoor(GameObject door)
     {
-        doorRenderer.SetActive(false);
+        door.SetActive(false);
     }
 
-    private void CloseDoor()
+    private void CloseDoor(GameObject door)
     {
-        doorRenderer.SetActive(true);
+        door.SetActive(true);
     }
 
     private bool isScoreReached(Collider other)
