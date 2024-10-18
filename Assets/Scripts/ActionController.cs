@@ -18,6 +18,7 @@ public class ActionController : MonoBehaviour
     public float shootRate = 0.5f;
 
     private ChamberManager chamberManager;
+
     private PlayerInput playerInput;
     private float shootTimer;
 
@@ -27,11 +28,11 @@ public class ActionController : MonoBehaviour
         chamberManager = GetComponent<ChamberManager>();
     }
 
-
     private void Update()
     {
         shootTimer -= Time.deltaTime;
-        var canShoot = playerInput.actions["Shoot"].WasPressedThisFrame() && shootTimer <= 0f;
+        bool canShoot = playerInput.actions["Shoot"].WasPressedThisFrame() && shootTimer <= 0f;
+
         if (canShoot && chamberManager.Shoot())
         {
             Shoot();
@@ -43,6 +44,7 @@ public class ActionController : MonoBehaviour
     {
         shootEffect.Play();
         RaycastHit hit;
+
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
             var target = hit.transform.GetComponent<HitManager>();
