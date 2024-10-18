@@ -8,7 +8,7 @@ public class MovementController : MonoBehaviour
     public float walkMaxSpeed = 7f;
     public float runMaxSpeed = 10f;
 
-    [Header("Jump Settings")] 
+    [Header("Jump Settings")]
     public float jumpForce = 5f;
     public float gravity = 9.81f;
 
@@ -17,7 +17,7 @@ public class MovementController : MonoBehaviour
     public float cameraSensitivity = 1f;
     public float maxPitch = 90f;
     public float minPitch = -90f;
-    
+
     private CharacterController characterController;
     private CollisionFlags collisionFlags;
     private float horizontalRotation;
