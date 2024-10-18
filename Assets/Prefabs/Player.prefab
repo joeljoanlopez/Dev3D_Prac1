@@ -276,12 +276,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 5
-  walkMaxSpeed: 7
-  runMaxSpeed: 10
-  jumpForce: 5
-  gravity: 9.81
+  walkMaxSpeed: 15
+  runMaxSpeed: 30
+  jumpForce: 20
+  gravity: 25
   pitchController: {fileID: 8675234595352671982}
-  cameraSensitivity: 1
+  cameraSensitivity: 3
   maxPitch: 90
   minPitch: -90
 --- !u!1 &4481336801418998926
