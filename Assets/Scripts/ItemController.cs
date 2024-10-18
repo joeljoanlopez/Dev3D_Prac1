@@ -26,13 +26,13 @@ public class ItemController : MonoBehaviour
         {
             case Type.Health:
                 HealthManager healthManager = other.GetComponent<HealthManager>();
-                return healthManager.AddHealth(amount);
+                return healthManager ? healthManager.AddHealth(amount) : false;
             case Type.Ammo:
-                AmmoManager ammoManager = other.gameObject.GetComponent<AmmoManager>();
-                return ammoManager.AddAmmo(amount);
+                AmmoManager ammoManager = other.gameObject.GetComponentInChildren<AmmoManager>();
+                return ammoManager ? ammoManager.AddAmmo(amount) : false;
             case Type.Shield:
                 ShieldManager shieldManager = other.GetComponent<ShieldManager>();
-                return shieldManager.AddShield(amount);
+                return shieldManager ? shieldManager.AddShield(amount) : false;
             default:
                 return false;
         }

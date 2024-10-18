@@ -8,7 +8,7 @@ public class MovementController : MonoBehaviour
     public float walkMaxSpeed = 7f;
     public float runMaxSpeed = 10f;
 
-    [Header("Jump Settings")] 
+    [Header("Jump Settings")]
     public float jumpForce = 5f;
     public float gravity = 9.81f;
 
@@ -17,7 +17,7 @@ public class MovementController : MonoBehaviour
     public float cameraSensitivity = 1f;
     public float maxPitch = 90f;
     public float minPitch = -90f;
-    
+
     private CharacterController characterController;
     private CollisionFlags collisionFlags;
     private float horizontalRotation;
@@ -67,8 +67,8 @@ public class MovementController : MonoBehaviour
 
     private void HandleMovement()
     {
-        var maxSpeed = playerInput.actions["Run"].ReadValue<float>() == 1 ? runMaxSpeed : walkMaxSpeed;
-        var targetVelocity = (moveInput.x * transform.right + moveInput.y * transform.forward) * maxSpeed;
+        float maxSpeed = playerInput.actions["Run"].IsPressed() ? runMaxSpeed : walkMaxSpeed;
+        Vector3 targetVelocity = (moveInput.x * transform.right + moveInput.y * transform.forward) * maxSpeed;
         velocity = Vector3.Lerp(velocity, targetVelocity, acceleration * Time.deltaTime);
     }
 
