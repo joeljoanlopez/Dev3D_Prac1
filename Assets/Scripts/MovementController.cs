@@ -1,4 +1,3 @@
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +11,7 @@ public class MovementController : MonoBehaviour
     [Header("Jump Settings")]
     public float jumpForce = 5f;
     public float gravity = 9.81f;
-    private bool isGrounded = false;
+    private bool isGrounded;
 
     [Header("Camera Settings")]
     public Transform pitchController;
@@ -25,8 +24,8 @@ public class MovementController : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lookInput;
     private Vector3 velocity = Vector3.zero;
-    private float verticalRotation = 0f;
-    private float horizontalRotation = 0f;
+    private float verticalRotation;
+    private float horizontalRotation;
     private CollisionFlags collisionFlags;
 
     private void Start()
@@ -68,7 +67,7 @@ public class MovementController : MonoBehaviour
 
     private void HandleMovement()
     {
-        float maxSpeed = playerInput.actions["Run"].ReadValue<float>() == 1 ? runMaxSpeed : walkMaxSpeed;
+        float maxSpeed = playerInput.actions["Run"].IsPressed() ? runMaxSpeed : walkMaxSpeed;
         Vector3 targetVelocity = (moveInput.x * transform.right + moveInput.y * transform.forward) * maxSpeed;
         velocity = Vector3.Lerp(velocity, targetVelocity, acceleration * Time.deltaTime);
     }
