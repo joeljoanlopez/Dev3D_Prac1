@@ -5,7 +5,7 @@ public class ActionController : MonoBehaviour
 {
     [Header("Controllers")]
     public GameObject player;
-    public Camera camera;
+    public Camera cam;
 
     [Header("Effects")]
     public GameObject bulletEffect;
@@ -16,21 +16,22 @@ public class ActionController : MonoBehaviour
     public float range = 100f;
     public float shootRate = 0.5f;
     private float shootTimer = 0f;
-
+    private ChamberManager chamberManager;
 
     private PlayerInput playerInput;
 
     private void Start()
     {
         playerInput = player.GetComponent<PlayerInput>();
+        chamberManager = GetComponent<ChamberManager>();
     }
-
 
     private void Update()
     {
         shootTimer -= Time.deltaTime;
-        bool canShoot = playerInput.actions["Shoot"].ReadValue<float>() == 1 && shootTimer <= 0f;
-        if (canShoot)
+        bool canShoot = playerInput.actions["Shoot"].WasPressedThisFrame() && shootTimer <= 0f;
+
+        if (canShoot && chamberManager.Shoot())
         {
             Shoot();
             shootTimer = shootRate;
@@ -41,16 +42,16 @@ public class ActionController : MonoBehaviour
     {
         shootEffect.Play();
         RaycastHit hit;
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range))
+
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
             Target target = hit.transform.GetComponent<Target>();
+
             if (target != null)
             {
-                //target.TakeDamage(damage, this.gameObject);
                 GameObject bullet = Instantiate(bulletEffect, hit.point, Quaternion.identity);
                 Destroy(bullet, 1f);
             }
         }
-
     }
 }

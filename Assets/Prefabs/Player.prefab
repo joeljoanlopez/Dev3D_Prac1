@@ -118,7 +118,10 @@ GameObject:
   - component: {fileID: 4930637475518803110}
   - component: {fileID: 1976920335809202336}
   - component: {fileID: 2634738773412445723}
-  - component: {fileID: 3506392854422414149}
+  - component: {fileID: 6539934593454037409}
+  - component: {fileID: 5605041463624992915}
+  - component: {fileID: 4084381243974447368}
+  - component: {fileID: 9196116827923523873}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -232,6 +235,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f1fe8aef-8409-4774-bbec-d2c648166136
     m_ActionName: Player/Run[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5bd50abb-818a-4ab8-87b2-ec7372b0ebed
+    m_ActionName: Player/AddShield[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: facba10d-1016-476c-a937-4a6688bce28e
+    m_ActionName: Player/DamageShield[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9de8cd78-87f9-4aef-9225-051e4c5891e4
+    m_ActionName: Player/AddHealth[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a418f7c8-94f1-4b41-9187-80b0bb4c43dc
+    m_ActionName: Player/DamageHealth[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0c66f3e4-3632-4d96-9fed-9f7b3e575771
+    m_ActionName: Player/AddScore[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -263,7 +286,50 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3506392854422414149
+--- !u!114 &6539934593454037409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037717264275055295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2fde2effddb5e41845ea0b78bdd803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  maxHealth: 100
+--- !u!114 &5605041463624992915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037717264275055295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80f37b36e72ea94ca636163c19e485a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldBar: {fileID: 0}
+  maxShield: 100
+  shieldReductionPercentage: 75
+--- !u!114 &4084381243974447368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037717264275055295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029e304496872124a960aef4d5de6413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreBar: {fileID: 0}
+  winScore: 1000
+--- !u!114 &9196116827923523873
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,12 +342,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 5
-  walkMaxSpeed: 15
-  runMaxSpeed: 30
-  jumpForce: 20
-  gravity: 25
+  walkMaxSpeed: 7
+  runMaxSpeed: 10
+  jumpForce: 5
+  gravity: 9.81
   pitchController: {fileID: 8675234595352671982}
-  cameraSensitivity: 3
+  cameraSensitivity: 1
   maxPitch: 90
   minPitch: -90
 --- !u!1 &4481336801418998926
@@ -526,6 +592,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6845445031734939106}
   - component: {fileID: 7149878031045779962}
+  - component: {fileID: 3609981344093892646}
+  - component: {fileID: 6251659769412736128}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -563,12 +631,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2037717264275055295}
-  camera: {fileID: 4979883781211561315}
+  cam: {fileID: 4979883781211561315}
   bulletEffect: {fileID: 7728366230342544413, guid: 212ef1a41838ce044a9ac54994866708, type: 3}
   shootEffect: {fileID: 5375711019719279891}
   damage: 10
   range: 100
   shootRate: 0.5
+--- !u!114 &3609981344093892646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7609035035078106524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 634c6481b15b5b34b8e666e0c1fd98d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoBar: {fileID: 0}
+  maxAmmo: 50
+--- !u!114 &6251659769412736128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7609035035078106524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eda44d13e2bafe048871e07e8f5dfd74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 1976920335809202336}
+  chamberBar: {fileID: 0}
+  maxChamber: 10
 --- !u!1001 &3657043598576873143
 PrefabInstance:
   m_ObjectHideFlags: 0
