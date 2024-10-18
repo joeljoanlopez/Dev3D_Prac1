@@ -49,7 +49,6 @@ public class ActionController : MonoBehaviour
 
             if (target != null)
             {
-                target.TakeDamage(damage, player);
                 GameObject bullet = Instantiate(bulletEffect, hit.point, Quaternion.identity);
                 Destroy(bullet, 1f);
             }
