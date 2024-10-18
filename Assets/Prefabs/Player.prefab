@@ -117,8 +117,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4930637475518803110}
   - component: {fileID: 1976920335809202336}
-  - component: {fileID: 8088702500880712084}
   - component: {fileID: 2634738773412445723}
+  - component: {fileID: 3506392854422414149}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: a781cf1bb6f65f74791f682289c98c7e, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8088702500880712084}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MovementController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 1
@@ -186,7 +186,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8088702500880712084}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MovementController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 1
@@ -214,7 +214,7 @@ MonoBehaviour:
     m_ActionName: Player/Crouch[/Keyboard/ctrl]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8088702500880712084}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MovementController, Assembly-CSharp
         m_MethodName: OnLook
         m_Mode: 1
@@ -237,27 +237,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &8088702500880712084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037717264275055295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9730f2bcbc61c1a4fb9ce7727f493045, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acceleration: 5
-  walkMaxSpeed: 7
-  runMaxSpeed: 10
-  jumpForce: 5
-  gravity: 9.81
-  pitchController: {fileID: 8675234595352671982}
-  cameraSensitivity: 5
-  maxPitch: 90
-  minPitch: -90
 --- !u!143 &2634738773412445723
 CharacterController:
   m_ObjectHideFlags: 0
@@ -284,6 +263,27 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3506392854422414149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037717264275055295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9730f2bcbc61c1a4fb9ce7727f493045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 5
+  walkMaxSpeed: 7
+  runMaxSpeed: 10
+  jumpForce: 5
+  gravity: 9.81
+  pitchController: {fileID: 8675234595352671982}
+  cameraSensitivity: 1
+  maxPitch: 90
+  minPitch: -90
 --- !u!1 &4481336801418998926
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3117079301490845219, guid: 212ef1a41838ce044a9ac54994866708, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.427
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 3117079301490845219, guid: 212ef1a41838ce044a9ac54994866708, type: 3}
       propertyPath: m_LocalPosition.z
