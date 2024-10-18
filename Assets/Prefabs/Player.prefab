@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 6539934593454037409}
   - component: {fileID: 5605041463624992915}
   - component: {fileID: 4084381243974447368}
+  - component: {fileID: 9196116827923523873}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -328,6 +329,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreBar: {fileID: 0}
   winScore: 1000
+--- !u!114 &9196116827923523873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037717264275055295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9730f2bcbc61c1a4fb9ce7727f493045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 5
+  walkMaxSpeed: 7
+  runMaxSpeed: 10
+  jumpForce: 5
+  gravity: 9.81
+  pitchController: {fileID: 8675234595352671982}
+  cameraSensitivity: 1
+  maxPitch: 90
+  minPitch: -90
 --- !u!1 &4481336801418998926
 GameObject:
   m_ObjectHideFlags: 0
