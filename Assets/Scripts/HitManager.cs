@@ -28,7 +28,10 @@ public class HitManager : MonoBehaviour
     public void Hit(float amount, GameObject source)
     {
         wasJustHit = true;
-        source.GetComponent<ScoreManager>()?.AddScore(score);
+        source.transform.parent.GetComponentInParent<ScoreManager>()?.AddScore(score);
+        Debug.Log($"The hit owner is {source.transform.parent.transform.parent.name}");
+
+
         healthManager?.TakeDamage(amount);
     }
 }

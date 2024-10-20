@@ -12,7 +12,6 @@ public class PathFollower : MonoBehaviour
 
     private void Start()
     {
-        isMoving = false;
         GoNext();
         transform.position = currentNode.position;
     }

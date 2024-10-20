@@ -21,12 +21,10 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        this.enabled = isSeen;
-
         score = Mathf.Clamp(score, 0f, winScore);
         scoreBar.UpdateAmount(score, winScore);
 
-        if (isScoreReached())
+        if (score >= winScore)
         {
             gameOver = true;
             Debug.Log("YOU WIN! Press T to restart");
@@ -42,24 +40,11 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(float amount)
     {
-        if (isSeen)
-        {
-            score += amount;
-        }
+        score += amount;
     }
 
     public bool isScoreReached()
     {
         return score >= winScore;
-    }
-
-    public void ShowScore()
-    {
-        isSeen = true;
-    }
-
-    public void HideScore()
-    {
-        isSeen = false;
     }
 }
