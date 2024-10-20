@@ -12,13 +12,8 @@ GameObject:
   - component: {fileID: 33247772828025950}
   - component: {fileID: 23861704525790080}
   - component: {fileID: 64717633637501740}
-  - component: {fileID: 1227725093846186135}
   - component: {fileID: 8099708719685378925}
-  - component: {fileID: 4874667193729113951}
-  - component: {fileID: 2251801844582299926}
-  - component: {fileID: 3165450123441656216}
   - component: {fileID: 3325143888716327268}
-  - component: {fileID: 242461711508448536}
   m_Layer: 0
   m_Name: Robot_Guardian
   m_TagString: Untagged
@@ -115,33 +110,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 18c800137884f7e41a1c548b743d113b, type: 3}
---- !u!114 &1227725093846186135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1262010245510058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c1ca7147af1757a6aeb967d929376a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  availableStates:
-  - {fileID: 11400000, guid: 768ec5a1c3f8bb54cbd2bdd92926aaab, type: 2}
-  - {fileID: 11400000, guid: 6c002667959791b41bddaeb085c5a50c, type: 2}
-  - {fileID: 11400000, guid: 222001e5e663d9047bf9d2e1e7237a28, type: 2}
-  - {fileID: 11400000, guid: e35dffb55170f7a459c5e073853b1a99, type: 2}
-  - {fileID: 11400000, guid: 2c27f62220b618749841bdff312dfae0, type: 2}
-  - {fileID: 11400000, guid: 49578bc113d86a06f94bfcbf4a6ce4a4, type: 2}
-  - {fileID: 11400000, guid: 0bb5fe3fd83648371b87f8bef8f3725c, type: 2}
-  initialState: {fileID: 11400000, guid: 49578bc113d86a06f94bfcbf4a6ce4a4, type: 2}
-  previousState: {fileID: 0}
-  currentState: {fileID: 0}
-  player: {fileID: 0}
-  attackDistance: 2
-  chaseDistance: 6
-  hearDistance: 8
 --- !u!114 &8099708719685378925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,46 +124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitState: {fileID: 11400000, guid: 2c27f62220b618749841bdff312dfae0, type: 2}
   score: 0
---- !u!114 &4874667193729113951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1262010245510058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb3cad4a915916a41a1f4758e4650b7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2251801844582299926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1262010245510058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 740ad5cf8277c01488053f9199b7c26d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visionAngle: 90
---- !u!114 &3165450123441656216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1262010245510058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd906ed88da6f8a5f83ade6ffa15139e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: {fileID: 0}
-  speed: 5
-  changeOffset: 0.01
 --- !u!114 &3325143888716327268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,68 +138,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
   maxHealth: 100
---- !u!108 &242461711508448536
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1262010245510058}
-  m_Enabled: 1
-  serializedVersion: 10
-  m_Type: 2
-  m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
 --- !u!1001 &737277793929359191
 PrefabInstance:
   m_ObjectHideFlags: 0

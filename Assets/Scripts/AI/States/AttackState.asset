@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateName: Attack
   canGetAggro: 0
-  damage: 10
+  damage: 50
   range: 10
   fireRate: 1
