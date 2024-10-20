@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28caa4646e644ffdad818ee744361eb9, type: 3}
   m_Name: AttackState
   m_EditorClassIdentifier: 
-  stateName: 
+  stateName: Attack
+  canGetAggro: 0
   damage: 10
   range: 10
   fireRate: 1

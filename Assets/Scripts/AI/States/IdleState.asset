@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: IdleState
   m_EditorClassIdentifier: 
   stateName: Idle
+  canGetAggro: 1
   idleTime: 1

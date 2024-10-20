@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab2ca0a070318b4eab71c672ad95c1c, type: 3}
   m_Name: Alert State
   m_EditorClassIdentifier: 
-  stateName: 
+  stateName: Alert
+  canGetAggro: 0
   rotationSpeed: 90
+  forwardOffsetAngle: 1

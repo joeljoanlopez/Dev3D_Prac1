@@ -7,35 +7,32 @@ public class ScoreManager : MonoBehaviour
     public float winScore = 1000f;
 
     private bool gameOver;
+    private bool isSeen;
 
-#if UNITY_EDITOR
     private PlayerInput playerInput;
-#endif
     private float score;
 
     private void Start()
     {
-#if UNITY_EDITOR
         playerInput = GetComponent<PlayerInput>();
-#endif
+        score = 0;
+        isSeen = false;
     }
 
     private void Update()
     {
+        this.enabled = isSeen;
+
         score = Mathf.Clamp(score, 0f, winScore);
         scoreBar.UpdateAmount(score, winScore);
 
-        if (score >= winScore)
+        if (isScoreReached())
         {
             gameOver = true;
             Debug.Log("YOU WIN! Press T to restart");
         }
 
         if (gameOver && playerInput.actions["Restart"].WasPressedThisFrame()) Restart();
-
-#if UNITY_EDITOR
-        if (playerInput.actions["AddScore"].WasPressedThisFrame()) AddScore(10f);
-#endif
     }
 
     private void Restart()
@@ -45,11 +42,24 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(float amount)
     {
-        score += amount;
+        if (isSeen)
+        {
+            score += amount;
+        }
     }
 
     public bool isScoreReached()
     {
         return score >= winScore;
+    }
+
+    public void ShowScore()
+    {
+        isSeen = true;
+    }
+
+    public void HideScore()
+    {
+        isSeen = false;
     }
 }

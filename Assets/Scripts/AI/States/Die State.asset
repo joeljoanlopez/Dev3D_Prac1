@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e964d1331b0646e4ac664f1f37ed012e, type: 3}
   m_Name: Die State
   m_EditorClassIdentifier: 
-  stateName: 
+  stateName: Die
+  canGetAggro: 0
   deathTime: 1

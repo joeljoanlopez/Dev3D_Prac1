@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: PatrolState
   m_EditorClassIdentifier: 
   stateName: Patrol
+  canGetAggro: 1
+  rotationSpeed: 5

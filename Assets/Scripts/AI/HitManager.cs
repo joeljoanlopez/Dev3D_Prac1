@@ -2,7 +2,7 @@
 
 public class HitManager : MonoBehaviour
 {
-    public string hitState;
+    public StateBlueprint hitState;
     public float score = 50f;
 
     private FSM fsm;
@@ -12,7 +12,7 @@ public class HitManager : MonoBehaviour
     private void Start()
     {
         wasJustHit = false;
-        fsm = GetComponent<FSM>();
+        fsm = GetComponentInParent<FSM>();
         healthManager = GetComponent<HealthManager>();
     }
 
@@ -21,18 +21,14 @@ public class HitManager : MonoBehaviour
         if (wasJustHit)
         {
             wasJustHit = false;
-            fsm?.ChangeState(hitState);
+            fsm?.ChangeState(hitState.name);
         }
     }
 
     public void Hit(float amount, GameObject source)
     {
         wasJustHit = true;
-        var scoreManager = source.GetComponent<ScoreManager>();
-        if (scoreManager != null)
-        {
-            scoreManager.AddScore(score);
-        }
+        source.GetComponent<ScoreManager>()?.AddScore(score);
         healthManager?.TakeDamage(amount);
     }
 }

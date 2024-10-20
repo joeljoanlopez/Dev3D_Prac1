@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8830c3f626c24c2d87f1982dcf277e9d, type: 3}
   m_Name: Hit State
   m_EditorClassIdentifier: 
-  stateName: 
+  stateName: Hit
+  canGetAggro: 0
   hitStunTime: 0.5
