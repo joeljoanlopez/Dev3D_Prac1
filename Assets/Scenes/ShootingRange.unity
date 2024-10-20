@@ -2375,7 +2375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010e532ed6badef41a6ff754855e4da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: e5b5f74d4d88006498f73627a026e31c, type: 3}
+  scene: Indoors
 --- !u!65 &810327340
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -3498,7 +3498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010e532ed6badef41a6ff754855e4da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: b9e684131bd3f6b41b471d7a62ddb41e, type: 3}
+  scene: ShootingRange
 --- !u!65 &585175742
 BoxCollider:
   m_ObjectHideFlags: 0
