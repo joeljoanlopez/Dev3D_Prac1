@@ -1,42 +1,44 @@
 using UnityEngine;
-using UnityEngine.InputSystem.XR.Haptics;
 
 [CreateAssetMenu(menuName = "FSM/AlertState")]
 public class AlertState : StateBlueprint
 {
 	public float rotationSpeed = 90f;
-	private Vector3 initialForward;
-	private Vector3 currentForward;
+	public float forwardOffsetAngle = 1f;
+	private float totalRotationAngle;
 	private Transform playerTransform;
 	private Transform myTransform;
 	private VisionManager visionManager;
 
 	public override void OnEnter(FSM fsm)
 	{
-		initialForward = myTransform.forward;
-		playerTransform = fsm.player.transform;
-		myTransform = fsm.transform;
 		visionManager = fsm.GetComponent<VisionManager>();
+		myTransform = fsm.GetComponent<Transform>();
+		totalRotationAngle = 0f;
+		playerTransform = fsm.player.transform;
 	}
 
 	public override void OnStay(FSM fsm)
 	{
-		Rotate();
+		totalRotationAngle += Rotate();
 
-		if (visionManager.isTargetSeen(fsm.player))
+		if (visionManager.isTargetSeen(fsm.player, fsm.hearDistance))
 		{
-			var playerDistance = Vector3.Distance(playerTransform.position, myTransform.position);
+			var player2DPosition = new Vector2(playerTransform.position.x, playerTransform.position.z);
+			var my2DPosition = new Vector2(myTransform.position.x, myTransform.position.z);
+			var playerDistance = Vector2.Distance(my2DPosition, player2DPosition);
 
 			if (playerDistance < fsm.attackDistance)
 			{
 				fsm.ChangeState("Attack");
 			}
-			else if (playerDistance < fsm.chaseDistance)
+			else if (playerDistance < fsm.hearDistance)
 			{
 				fsm.ChangeState("Chase");
 			}
 		}
-		else if (currentForward == initialForward)
+
+		if (totalRotationAngle >= 360f)
 		{
 			fsm.ChangeState("Idle");
 		}
@@ -46,8 +48,10 @@ public class AlertState : StateBlueprint
 	{
 	}
 
-	public void Rotate()
+	public float Rotate()
 	{
-		myTransform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+		float rotationAngle = rotationSpeed * Time.deltaTime;
+		myTransform.Rotate(Vector3.up * rotationAngle);
+		return rotationAngle;
 	}
 }

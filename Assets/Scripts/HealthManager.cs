@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
-
+using UnityEngine.SceneManagement;
 public class HealthManager : MonoBehaviour
 {
     public UIFillPercentage healthBar;
@@ -9,29 +7,15 @@ public class HealthManager : MonoBehaviour
 
     private float currentHealth;
 
-#if UNITY_EDITOR
-    private PlayerInput playerInput;
-#endif
-
     private void Start()
     {
         currentHealth = maxHealth;
-
-#if UNITY_EDITOR
-        playerInput = GetComponent<PlayerInput>();
-#endif
     }
 
     private void Update()
     {
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
-        if (healthBar != null) healthBar.UpdateAmount(currentHealth, maxHealth);
-
-#if UNITY_EDITOR
-        if (playerInput.actions["AddHealth"].WasPressedThisFrame())
-            AddHealth(10f);
-        else if (playerInput.actions["DamageHealth"].WasPressedThisFrame()) TakeDamage(10f);
-#endif
+        healthBar?.UpdateAmount(currentHealth, maxHealth);
     }
 
     public void TakeDamage(float amount)
@@ -49,14 +33,9 @@ public class HealthManager : MonoBehaviour
 
     private void Die()
     {
-        FSM fsm = GetComponent<FSM>();
-        if (fsm)
-        {
-            fsm.ChangeState("Die");
-        }
-        else
-        {
-            Debug.Log("You Died");
-        }
+        GetComponentInParent<FSM>()?.ChangeState("Die");
+
+        // TODO Do not reload the scene like this, just allow the player to respawn
+        if (GetComponent<MovementController>()) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

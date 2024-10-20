@@ -5,17 +5,20 @@ public class FSM : MonoBehaviour
 {
     [Header("List of States")]
     public List<StateBlueprint> availableStates; // List of available states
+
+    [Header("State Parameters")]
     public StateBlueprint initialState;
     public StateBlueprint previousState;
+    public StateBlueprint currentState;
 
     [Header("Custom Parameters")]
-    public PathFollower pathFollower;
     public GameObject player;
-    public float attackDistance = 50f;
-    public float chaseDistance = 100f;
-    public float detectionRange = 150f;
+    public float attackDistance = 3f;
+    public float chaseDistance = 5f;
+    public float hearDistance = 7f;
 
-    private StateBlueprint currentState;
+    private PathFollower pathFollower;
+    public PathFollower PathFollower { get { return pathFollower; } }
 
     public Dictionary<string, StateBlueprint> StateDictionary { get; private set; }
 

@@ -1,5 +1,4 @@
-﻿using Unity.VisualScripting.FullSerializer;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "AttackState", menuName = "FSM/AttackState")]
 public class AttackState : StateBlueprint
@@ -10,25 +9,28 @@ public class AttackState : StateBlueprint
     public float fireRate = 1f;
 
     private float nextFire;
+    private ParticleSystem[] shootEffects;
 
     public override void OnEnter(FSM fsm)
     {
-        ResetCooldown();
+        nextFire = fireRate;
+        shootEffects = fsm.GetComponentsInChildren<ParticleSystem>();
     }
 
     public override void OnStay(FSM fsm)
     {
-        if (IsNull(fsm.player))
+        if (fsm.player == null)
         {
+            Debug.LogError("FSM has no player");
             return;
         }
 
-        UpdateCooldown();
+        nextFire -= Time.deltaTime;
 
         if (nextFire <= 0)
         {
             Attack(fsm.player);
-            ResetCooldown();
+            nextFire = fireRate;
         }
 
         float playerDistance = Vector3.Distance(fsm.transform.position, fsm.player.transform.position);
@@ -39,41 +41,23 @@ public class AttackState : StateBlueprint
         }
     }
 
-    public override void OnExit(FSM fsm) { }
+    public override void OnExit(FSM fsm) { } //Nothing
 
     private void Attack(GameObject target)
     {
-        var healthManager = target.GetComponent<HealthManager>();
-
-        if (healthManager != null)
+        var shieldManager = target.GetComponent<ShieldManager>();
+        if (shieldManager != null)
         {
-            healthManager.TakeDamage(damage);
-            nextFire = fireRate; // Restart cooldown
+            shieldManager.TakeDamage(damage);
+            nextFire = fireRate;
+            foreach (var effect in shootEffects)
+            {
+                effect.Play();
+            }
         }
         else
         {
-            Debug.LogWarning("Target does not have a Health Manager");
+            Debug.LogWarning("Target does not have a Shield Manager");
         }
-    }
-
-    private void UpdateCooldown()
-    {
-        nextFire -= Time.deltaTime;
-    }
-
-    private void ResetCooldown()
-    {
-        nextFire = fireRate;
-    }
-
-    private bool IsNull(GameObject target)
-    {
-        if (target == null)
-        {
-            Debug.LogWarning("FSM player is null.");
-            return true;
-        }
-
-        return false;
     }
 }

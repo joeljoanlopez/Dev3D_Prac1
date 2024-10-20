@@ -7,12 +7,13 @@ public class PathFollower : MonoBehaviour
     public float changeOffset = 0.01f;
 
     private Transform currentNode;
+    public Transform CurrentNode { get { return currentNode; } }
     private bool isMoving;
 
     private void Start()
     {
         isMoving = false;
-        currentNode = path.GetNextNode(currentNode);
+        GoNext();
         transform.position = currentNode.position;
     }
 
@@ -27,10 +28,15 @@ public class PathFollower : MonoBehaviour
         isMoving = true;
     }
 
-    public void NextNode()
+    public void Stop()
+    {
+        isMoving = false;
+    }
+
+    public Transform GoNext()
     {
         currentNode = path.GetNextNode(currentNode);
-        isMoving = false;
+        return currentNode;
     }
 
     public bool ArrivedAtNode()
