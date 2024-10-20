@@ -174,6 +174,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.8
+  m_Height: 1.8
   m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -192,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2fde2effddb5e41845ea0b78bdd803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 536516339347332743}
   maxHealth: 100
 --- !u!114 &5605041463624992915
 MonoBehaviour:
@@ -206,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80f37b36e72ea94ca636163c19e485a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldBar: {fileID: 0}
+  shieldBar: {fileID: 4371110364516460121}
   maxShield: 100
   shieldReductionPercentage: 75
 --- !u!114 &4084381243974447368
@@ -238,10 +239,10 @@ MonoBehaviour:
   acceleration: 5
   walkMaxSpeed: 7
   runMaxSpeed: 10
-  jumpForce: 5
-  gravity: 9.81
+  jumpForce: 20
+  gravity: 20
   pitchController: {fileID: 8675234595352671982}
-  cameraSensitivity: 1
+  cameraSensitivity: 5
   maxPitch: 90
   minPitch: -90
 --- !u!1 &4481336801418998926
@@ -306,6 +307,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.775, y: 0.9, z: 0.4545141}
   m_LocalScale: {x: 0.775, y: 0.9, z: 0.4545141}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -383,7 +385,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.008760961, y: 0, z: -9.648806e-16}
 --- !u!1 &6122163016637965502
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +452,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 1000
-  field of view: 60
+  field of view: 53.641273
   orthographic: 0
   orthographic size: 5
   m_Depth: 0

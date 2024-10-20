@@ -3,28 +3,25 @@
 [CreateAssetMenu(menuName = "FSM/DieState")]
 public class DieState : StateBlueprint
 {
-    public float deathTime = 1f;
-    
-    private float currentTime;
+    public float rotationSpeed = 180f;
+    private float currentRotation;
 
     public override void OnEnter(FSM fsm)
     {
-        currentTime = deathTime;
+        currentRotation = 0f;
     }
 
     public override void OnStay(FSM fsm)
     {
-        UpdateTimer();
-        if (currentTime <= 0) Destroy(fsm.gameObject);
+        float rotationAmount = rotationSpeed * Time.deltaTime;
+        fsm.transform.Rotate(Vector3.right, rotationAmount);
+        currentRotation += rotationAmount;
+
+        if (currentRotation >= 360f) Destroy(fsm.gameObject);
     }
 
     public override void OnExit(FSM fsm)
     {
         //Nothing
-    }
-
-    private void UpdateTimer()
-    {
-        currentTime -= Time.deltaTime;
     }
 }
