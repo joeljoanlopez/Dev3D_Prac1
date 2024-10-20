@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class HealthManager : MonoBehaviour
 {
     public UIFillPercentage healthBar;
@@ -33,5 +34,8 @@ public class HealthManager : MonoBehaviour
     private void Die()
     {
         GetComponentInParent<FSM>()?.ChangeState("Die");
+
+        // TODO Do not reload the scene like this, just allow the player to respawn
+        if (GetComponent<MovementController>()) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
