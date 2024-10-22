@@ -7,9 +7,12 @@ public class HealthManager : MonoBehaviour
 
     private float currentHealth;
 
+    [SerializeField] private Vector3 respawnPoint;
+    public static Vector3 staticRespawnPoint;
     private void Start()
     {
         currentHealth = maxHealth;
+        staticRespawnPoint= respawnPoint;
     }
 
     private void Update()
@@ -35,7 +38,7 @@ public class HealthManager : MonoBehaviour
     {
         GetComponentInParent<FSM>()?.ChangeState("Die");
 
-        // TODO Do not reload the scene like this, just allow the player to respawn
-        if (GetComponent<MovementController>()) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+        transform.position = staticRespawnPoint;
     }
 }
